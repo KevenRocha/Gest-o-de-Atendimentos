@@ -8,102 +8,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Gestão_de_Atendimentos
 {
     public partial class Form2 : Form
     {
-        // Criar um campo para armazenar o caminho do arquivo de texto
-        private string filePath = @"C:\Atendimentos.txt";
-        private TextBox txtNome;
-        private TextBox txtEmpresa;
-        private TextBox txtTelefone;
-        private TextBox txtSolicitacao;
-        private TextBox txtSuporte;
-        private Button btnRegistrar;
         public Form2()
         {
             InitializeComponent();
         }
-        // Criar um método para validar os dados do formulário
-        private bool ValidateData()
+        
+
+        private void button1Registrar_Click_1(object sender, EventArgs e)
+        
         {
-            // Verificar se os campos estão preenchidos
-            if (string.IsNullOrEmpty(txtNome.Text) ||
-                string.IsNullOrEmpty(txtEmpresa.Text) ||
-                string.IsNullOrEmpty(txtTelefone.Text)||
-                string.IsNullOrEmpty(txtSolicitacao.Text)||
-                string.IsNullOrEmpty(txtSuporte.Text))
-            {
-                // Exibir uma mensagem de erro
-                MessageBox.Show("Por favor, preencha os campos NOME, EMPRESA e TELEFONE.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else
-            {
-                // Retornar verdadeiro se os dados são válidos
-                return true;
-            }
+            string nome = textBoxNome.Text;
+            string empresa = textBoxEmpresa.Text;
+            string telefone = textBoxTelefone.Text;
+            string solicitacao = textBoxSolicitacao.Text;
+            string suporte = textBoxSuporte.Text;
+
+            string registro = $"Nome: {nome}\nEmpresa: {empresa}\nTelefone: {telefone}\nSolicitação: {solicitacao}\nSuporte prestado: {suporte}\n\n";
+
+            Clipboard.SetText(registro);
+            File.AppendAllText("registros.txt", registro);
+
+            FormRegistro formRegistro = new FormRegistro();
+            formRegistro.Registro += registro;
+            FormContatos formcontatos = new FormContatos();
+            formcontatos.DgvContatos.Rows.Add(nome, empresa, telefone);
 
 
-        }
-        private void SaveData()
-        {
-            // Criar uma variável para armazenar os dados do formulário
-            string data = $"Nome do Cliente: {Nome.Text}\r\n" +
-                          $"Empresa: {Empresa.Text}\r\n" +
-                          $"Telefone: {Telefone.Text}\r\n" +
-                          $"Solicitação: {Solicitacao.Text}\r\n" +
-                          $"Solução: {Suporte.Text}\r\n" +
-                          $"Data e Hora: {DateTime.Now}\r\n" +
-                          $"----------------------------------------\r\n";
-            // Tentar salvar os dados no arquivo de texto
-            try
-            {
-                // Abrir o arquivo em modo de anexação
-                using (StreamWriter sw = File.AppendText(filePath))
-                {
-                    // Escrever os dados no arquivo
-                    sw.Write(data);
-                }
-                // Exibir uma mensagem de sucesso
-                MessageBox.Show("Dados salvos com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                // Exibir uma mensagem de erro
-                MessageBox.Show($"Ocorreu um erro ao salvar os dados: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
 
-        }
-        private void ShowData()
-        {
-            // Criar uma variável para armazenar os dados do formulário
-            string data = $"Nome do Cliente: {Nome.Text}\r\n" +
-                          $"Empresa: {Empresa.Text}\r\n" +
-                          $"Telefone: {Telefone.Text}\r\n" +
-                          $"Solicitação: {Solicitacao.Text}\r\n" +
-                          $"Solução: {Suporte.Text}\r\n" +
-                          $"Data e Hora: {DateTime.Now}\r\n" +
-                          $"----------------------------------------\r\n";
-
-            // Adicionar os dados à caixa de histórico usando o método AppendText
-            rtbHistorico.AppendText(data);
+            textBoxNome.Clear();
+            textBoxEmpresa.Clear();
+            textBoxTelefone.Clear();
+            textBoxSolicitacao.Clear();
+            textBoxSuporte.Clear();
         }
 
+    }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
-        private void bntRegistrar_Click(object sender, EventArgs e)
-        {
-            if (ValidateData())
-            {
-                SaveData();
-            }
-        }
+    public class Atendimento
+    {
+        public string Nome { get; set; }
+        public string Empresa { get; set; }
+        public string Telefone { get; set; }
+        public string Solicitacao { get; set; }
+        public string Suporte { get; set; }
+
+        public static List<Atendimento> ListaAtendimentos = new List<Atendimento>();
     }
 }
+
+

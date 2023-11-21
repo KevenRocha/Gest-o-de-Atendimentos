@@ -12,6 +12,7 @@ namespace Gestão_de_Atendimentos
 {
     public partial class Form1 : Form
     {
+        private FormContatos formcontatos = new FormContatos();
         public Form1()
         {
             InitializeComponent();
@@ -46,11 +47,13 @@ namespace Gestão_de_Atendimentos
 
         private void buttonContatos_Click(object sender, EventArgs e)
         {
+            abrirPainelPrincipal(new FormContatos());
 
         }
 
         private void buttonHistorico_Click(object sender, EventArgs e)
         {
+            abrirPainelPrincipal(new FormRegistro());
 
         }
         private void buttonAjuda_Click_1(object sender, EventArgs e)
@@ -94,5 +97,6 @@ namespace Gestão_de_Atendimentos
 
         }
 
+        
     }
 }

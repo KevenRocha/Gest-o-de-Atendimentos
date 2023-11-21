@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelDeControle = new System.Windows.Forms.Panel();
             this.panelAjudaSubmenu = new System.Windows.Forms.Panel();
             this.buttonPainel = new System.Windows.Forms.Button();
@@ -40,6 +41,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.PainelInferior = new System.Windows.Forms.Panel();
             this.panelPainelPrincipal = new System.Windows.Forms.Panel();
+            
             this.panelDeControle.SuspendLayout();
             this.panelAjudaSubmenu.SuspendLayout();
             this.SuspendLayout();
@@ -217,6 +219,7 @@
             this.panelPainelPrincipal.Size = new System.Drawing.Size(850, 480);
             this.panelPainelPrincipal.TabIndex = 2;
             // 
+          
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -249,6 +252,7 @@
         private System.Windows.Forms.Button buttonBasedeConhecimento;
         private System.Windows.Forms.Panel PainelInferior;
         private System.Windows.Forms.Panel panelPainelPrincipal;
+        
     }
 }
 
