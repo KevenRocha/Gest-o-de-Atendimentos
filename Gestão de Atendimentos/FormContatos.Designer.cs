@@ -40,7 +40,7 @@
             this.dgvContatos.Name = "dgvContatos";
             this.dgvContatos.RowHeadersWidth = 51;
             this.dgvContatos.RowTemplate.Height = 24;
-            this.dgvContatos.Size = new System.Drawing.Size(722, 308);
+            this.dgvContatos.Size = new System.Drawing.Size(758, 308);
             this.dgvContatos.TabIndex = 0;
             // 
             // FormContatos
